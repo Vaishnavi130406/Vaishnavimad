@@ -1,0 +1,15 @@
+version: 0.2
+phasees:
+  install:
+    runtime-version:
+      nodejs: 18
+  build:
+    commands:
+    -echo Build started on 'date'
+    -echo "No build steps needed for static HTML"
+    post_build:
+      commands:
+      -echo Build completed on 'date'
+  artifacts:
+    files:
+    -'**/*'
