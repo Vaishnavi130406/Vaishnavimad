@@ -1,16 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>AWS Pipeline Demo</title>
-    <style>
-        body{
-            font-family: sans-serif;text-align: center;margin-top: 100px; background-color: #232f3e;color: #FFFF;}
-            h1{color: #ff9900;}            
-    </style>
-</head> 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Fun Website</title>
+<link rel="manifest" href="manifest.json">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background 0.6s ease;
+        padding: 20px;
+    }
+
+    .container {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        font-size: 2rem;
+    }
+
+    p {
+        margin: 15px 0;
+        font-size: 1.1rem;
+    }
+
+    button {
+        margin: 10px 5px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        background: #333;
+        color: white;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #555;
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        button {
+            width: 100%;
+            margin: 8px 0;
+        }
+    }
+</style>
+</head>
+
 <body>
-    <h1>Welcome to My Application</h1>
-    <p>This page was deployed successfully using AWS CodePipeline</p>
+
+<div class="container">
+    <h1>Random Quote Generator</h1>
+    <p id="quote">Click the button to generate something random!</p>
+    <p id="emoji" style="font-size:2rem;"></p>
+    <button onclick="generateRandom()">Mood for Today</button>
+    <button onclick="randomBackground()">Random Background</button>
+</div>
+
+<script>
+const quotes = [
+    "Believe in yourself!",
+    "Stay curious.",
+    "Code. Create. Repeat.",
+    "Dream big.",
+    "Embrace the chaos.",
+    "Make today awesome.",
+    "Randomness is fun!",
+    "You’ve got this!"
+];
+
+const emojis = ["🔥", "🚀", "🎉", "😎", "🌈", "⚡", "💡", "🎲"];
+
+function generateRandom() {
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+
+    document.getElementById("quote").textContent = randomQuote;
+    document.getElementById("emoji").textContent = randomEmoji;
+}
+
+function randomBackground() {
+    const color1 = `hsl(${Math.random() * 360}, 70%, 60%)`;
+    const color2 = `hsl(${Math.random() * 360}, 70%, 60%)`;
+
+    document.body.style.background = `linear-gradient(135deg, ${color1}, ${color2})`;
+}
+
+// Set initial random background on load
+randomBackground();
+</script>
+
+<script src="script.js"></script>
+<script src="sw.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
